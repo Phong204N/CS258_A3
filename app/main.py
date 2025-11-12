@@ -12,7 +12,7 @@ from mininet.log import setLogLevel, info
 def main(**kwargs):
     tmp1:exp1Topo = exp1Topo()
     setLogLevel("info")
-    net = Mininet(topo=exp1Topo, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
+    net = Mininet(topo=tmp1, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
     net.start()
     
     # net["h1"].cmd("/usr/sbin/sshd")
