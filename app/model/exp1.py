@@ -1,0 +1,46 @@
+##  Begin Standard Imports
+
+##  Begin Local Imports
+import resource
+
+##  Begin `mininet` Imports
+from mininet.mininet.node import Node
+from mininet.mininet.topo import Topo
+
+class exp1Topo(Topo):
+    def __init__(self, **kwargs) -> None:
+        super(exp1Topo, self).__init__(**kwargs)
+        # for key in kwargs:
+        #     if key == "N": N=kwargs[key]
+
+        h1_ports:tuple[str, int] = ("h1-eth", 0)
+        h2_ports:tuple[str, int] = ("h2-eth", 0)
+        h3_ports:tuple[str, int] = ("h3-eth", 0)
+        r1_ports:tuple[str, int] = ("r1-eth", 0)
+        r2_ports:tuple[str, int] = ("r2-eth", 0)
+
+        h1 = self.addHost("h1", ip="10.0.0.1/24")
+        h2 = self.addHost("h2", ip="10.0.3.2/24")
+        h3 = self.addHost("h3", ip="10.0.2.2/24")
+
+        r1 = self.addHost("r1")
+        r2 = self.addHost("r2")
+
+        self.addLink(h1, r1, intfName1=exp1Topo.addNewInterfaceName(h1_ports), intfName2=exp1Topo.addNewInterfaceName(r1_ports))
+        self.addLink(h2, r1, intfName1=exp1Topo.addNewInterfaceName(h2_ports), intfName2=exp1Topo.addNewInterfaceName(r1_ports))
+        self.addLink(r1, r2, intfName1=exp1Topo.addNewInterfaceName(r1_ports), intfName2=exp1Topo.addNewInterfaceName(r2_ports))
+        self.addLink(r2, h3, intfName1=exp1Topo.addNewInterfaceName(r2_ports), intfName2=exp1Topo.addNewInterfaceName(h3_ports)) 
+
+    def addNewInterfaceName(intfValues:tuple[str, int]) -> str:
+        intfValues[1] += 1
+        result:str = f"{intfValues[0]}{intfValues[1]}"
+
+# class LinuxRouter(Node):
+#     def config(self, **params):
+#         super(LinuxRouter, self).config(**params)
+#         info("enabling forwarding on ", self)
+#         self.cmd("sysctl net.ipv4.ip_forward=1")
+
+#     def terminate(self):
+#         self.cmd("sysctl net.ipv4.ip_forward=0")
+#         super(LinuxRouter, self).terminate()
