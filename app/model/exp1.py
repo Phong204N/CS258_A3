@@ -56,6 +56,8 @@ class exp1Topo(Topo):
     def addNewInterfaceName(intfValues:list[str, int]) -> str:
         intfValues[1] += 1
         result:str = f"{intfValues[0]}{intfValues[1]}"
+        print(result)
+        return result
 
 class LinuxRouter(Node):
     def config(self, **params):
