@@ -19,13 +19,13 @@ class exp1Topo(Topo):
         r1_ports:list[str, int] = ["r1-eth", 0]
         r2_ports:list[str, int] = ["r2-eth", 0]
 
-        # h1 = self.addHost("h1", ip="10.0.0.1/24")
-        # h2 = self.addHost("h2", ip="10.0.3.2/24")
-        # h3 = self.addHost("h3", ip="10.0.2.2/24")
+        h1 = self.addHost("h1", ip="10.0.0.1/24")
+        h2 = self.addHost("h2", ip="10.0.3.2/24")
+        h3 = self.addHost("h3", ip="10.0.2.2/24")
         
-        h1 = self.addHost("h1")
-        h2 = self.addHost("h2")
-        h3 = self.addHost("h3")
+        # h1 = self.addHost("h1")
+        # h2 = self.addHost("h2")
+        # h3 = self.addHost("h3")
 
         r1 = self.addHost("r1", cls=LinuxRouter)
         r2 = self.addHost("r2", cls=LinuxRouter)
