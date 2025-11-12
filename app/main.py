@@ -27,7 +27,7 @@ def main(**kwargs):
     net["r1"].cmd("ip route add to 10.0.3.0 via 10.0.3.4 dev r1-eth2")
     net["r2"].cmd("ip route add to 10.0.2.0 via 10.0.2.1 dev r2-eth2")
 
-    net["r1"].cmd("ip route add to 10.0.1.0 via 10.0.1.2 dev r2-eth1")
+    net["r2"].cmd("ip route add to 10.0.1.0 via 10.0.1.2 dev r2-eth1")
 
     CLI(net)
     input("Network running. Press Enter to stop...")
