@@ -7,10 +7,9 @@ from model.exp1 import exp1Topo
 from mininet.net import Mininet
 from mininet.node import Node, OVSKernelSwitch, Controller, RemoteController, DefaultController
 from mininet.cli import CLI
-from mininet.topo import Topo
 from mininet.log import setLogLevel, info
 
-def main():
+def main(**kwargs):
     tmp1:exp1Topo = exp1Topo()
     setLogLevel("info")
     net = Mininet(topo=exp1Topo, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
