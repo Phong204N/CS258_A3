@@ -15,13 +15,13 @@ def main(**kwargs):
     net = Mininet(topo=tmp1, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
     net.start()
     
-    net["h1"].cmd("/usr/sbin/sshd")
-    net["h2"].cmd("/usr/sbin/sshd")
-    net["h3"].cmd("/usr/sbin/sshd")
+    # net["h1"].cmd("/usr/sbin/sshd")
+    # net["h2"].cmd("/usr/sbin/sshd")
+    # net["h3"].cmd("/usr/sbin/sshd")
 
-    net["h1"].cmd("ip route add default via 10.0.0.254")
-    net["h2"].cmd("ip route add default via 10.0.3.254")
-    net["h3"].cmd("ip route add default via 10.0.2.254")
+    net["h1"].cmd("ip route add default via 10.0.0.3")
+    net["h2"].cmd("ip route add default via 10.0.3.4")
+    net["h3"].cmd("ip route add default via 10.0.2.1")
 
     CLI(net)
     net.stop()
