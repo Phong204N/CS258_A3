@@ -23,9 +23,13 @@ def main(**kwargs):
     net["h2"].cmd("ip route add default via 10.0.3.4")
     net["h3"].cmd("ip route add default via 10.0.2.1")
 
-    # net["r1"].cmd("ip route add to 10.0.0.0 via 10.0.0.3 dev r1-eth1")
+    net["r1"].cmd("ip route add to 10.0.0.0 via 10.0.0.3 dev r1-eth1")
+    net["r1"].cmd("ip route add to 10.0.3.0 via 10.0.3.4 dev r1-eth2")
+    net["r2"].cmd("ip route add to 10.0.2.0 via 10.0.2.1 dev r2-eth2")
+
 
     CLI(net)
+    input("Network running. Press Enter to stop...")
     net.stop()
 
 if __name__ == "__main__":
