@@ -29,6 +29,8 @@ def main(**kwargs):
 
     net["r1"].cmd("ip route add to 10.0.2.0/24 via 10.0.1.2 dev r1-eth3")
 
+    net["h1"].cmd("ip route add to 10.0.3.0/24 via 10.0.0.3 dev h1-eth1")
+
     CLI(net)
     input("Network running. Press Enter to stop...")
     net.stop()
