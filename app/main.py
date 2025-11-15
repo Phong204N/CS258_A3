@@ -11,6 +11,7 @@ from mininet.cli import CLI
 from mininet.log import setLogLevel
 
 def main(**kwargs):
+    exp1Run(kwargs=kwargs)
 
 def exp1Run(**kwargs) -> Path:
     tmp1:exp1Topo = exp1Topo()
