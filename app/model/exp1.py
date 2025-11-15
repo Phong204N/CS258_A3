@@ -36,19 +36,19 @@ class exp1Topo(Topo):
         # r2.setIP("10.0.1.2/24", intf=f"{r2_ports[0]}0")
         # r2.setIP("10.0.2.1/24", intf=f"{r2_ports[0]}1")
 
-        self.addLink(h1, r1, intfName1=exp1Topo.addNewInterfaceName(h1_ports), intfName2=exp1Topo.addNewInterfaceName(r1_ports),
+        self.addLink(h1, r1, 
                      params1={"ip":"10.0.0.1/24"},
                      params2={"ip":"10.0.0.3/24"}
                      )
-        self.addLink(h2, r1, intfName1=exp1Topo.addNewInterfaceName(h2_ports), intfName2=exp1Topo.addNewInterfaceName(r1_ports),
+        self.addLink(h2, r1, 
                      params1={"ip":"10.0.3.2/24"},
                      params2={"ip":"10.0.3.4/24"}
                      )
-        self.addLink(r1, r2, intfName1=exp1Topo.addNewInterfaceName(r1_ports), intfName2=exp1Topo.addNewInterfaceName(r2_ports),
+        self.addLink(r1, r2, 
                      params1={"ip":"10.0.1.1/24"},
                      params2={"ip":"10.0.1.2/24"}
                      )
-        self.addLink(r2, h3, intfName1=exp1Topo.addNewInterfaceName(r2_ports), intfName2=exp1Topo.addNewInterfaceName(h3_ports),
+        self.addLink(r2, h3, 
                      params1={"ip":"10.0.2.1/24"},
                      params2={"ip":"10.0.2.2/24"}
                      ) 
