@@ -21,17 +21,17 @@ class exp1Topo(Topo):
 
         h1 = self.addHost(
             "h1", 
-            ip="10.0.0.1/24", 
+            # ip="10.0.0.1/24", 
             defaultRoute="via 10.0.0.3"
         )
         h2 = self.addHost(
             "h2", 
-            ip="10.0.3.2/24", 
+            # ip="10.0.3.2/24", 
             defaultRoute="via 10.0.3.4"
         )
         h3 = self.addHost(
             "h3", 
-            ip="10.0.2.2/24", 
+            # ip="10.0.2.2/24", 
             defaultRoute="via 10.0.2.1"
         )
         
@@ -39,32 +39,32 @@ class exp1Topo(Topo):
         # h2 = self.addHost("h2")
         # h3 = self.addHost("h3")
 
-        r1 = self.addHost("r1", ip="", cls=LinuxRouter)
-        r2 = self.addHost("r2", ip="", cls=LinuxRouter)
+        r1 = self.addHost("r1", ip=None, cls=LinuxRouter)
+        r2 = self.addHost("r2", ip=None, cls=LinuxRouter)
 
         self.addLink(h1, r1, 
                      intfName1=exp1Topo.addNewInterfaceName(h1_ports), 
                      intfName2=exp1Topo.addNewInterfaceName(r1_ports),
-                    #  params1={"ip":"10.0.0.1/24"},
-                    #  params2={"ip":"10.0.0.3/24"}
+                     params1={"ip":"10.0.0.1/24"},
+                     params2={"ip":"10.0.0.3/24"}
                      )
         self.addLink(h2, r1, 
                      intfName1=exp1Topo.addNewInterfaceName(h2_ports), 
                      intfName2=exp1Topo.addNewInterfaceName(r1_ports),
-                    #  params1={"ip":"10.0.3.2/24"},
-                    #  params2={"ip":"10.0.3.4/24"}
+                     params1={"ip":"10.0.3.2/24"},
+                     params2={"ip":"10.0.3.4/24"}
                      )
         self.addLink(r1, r2, 
                      intfName1=exp1Topo.addNewInterfaceName(r1_ports), 
                      intfName2=exp1Topo.addNewInterfaceName(r2_ports),
-                    #  params1={"ip":"10.0.1.1/24"},
-                    #  params2={"ip":"10.0.1.2/24"}
+                     params1={"ip":"10.0.1.1/24"},
+                     params2={"ip":"10.0.1.2/24"}
                      )
         self.addLink(r2, h3, 
                      intfName1=exp1Topo.addNewInterfaceName(r2_ports), 
                      intfName2=exp1Topo.addNewInterfaceName(h3_ports),
-                    #  params1={"ip":"10.0.2.1/24"},
-                    #  params2={"ip":"10.0.2.2/24"}
+                     params1={"ip":"10.0.2.1/24"},
+                     params2={"ip":"10.0.2.2/24"}
                      ) 
 
     def addNewInterfaceName(intfValues:list[str, int]) -> str:
