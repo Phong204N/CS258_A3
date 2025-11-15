@@ -23,6 +23,8 @@ def main(**kwargs):
     # net["h2"].cmd("ip route add default via 10.0.3.4")
     # net["h3"].cmd("ip route add default via 10.0.2.1")
 
+    net["r1"].cmd()
+
     # net["r1"].cmd("ip route add to 10.0.1.0/24 via 10.0.1.2")
 
     net["r1"].cmd("ip route add to 10.0.2.0/24 via 10.0.1.2 dev r1-eth2")
