@@ -1,4 +1,5 @@
 ##  Begin Standard Imports
+from pathlib import Path
 
 ##  Begin Local Imports
 from model.exp1 import exp1Topo
@@ -10,18 +11,13 @@ from mininet.cli import CLI
 from mininet.log import setLogLevel
 
 def main(**kwargs):
+
+def exp1Run(**kwargs) -> Path:
     tmp1:exp1Topo = exp1Topo()
     setLogLevel("info")
     net = Mininet(topo=tmp1, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
     # net = Mininet(topo=tmp1)
     net.start()
-    
-    # net["r1"].cmd("ip addr add 10.0.0.3/24 dev r1-eth0")
-    # net["r1"].cmd("ip addr add 10.0.3.4/24 dev r1-eth1")
-    # net["r1"].cmd("ip addr add 10.0.1.1/24 dev r1-eth2")
-    
-    # net["r2"].cmd("ip addr add 10.0.1.2/24 dev r2-eth0")
-    # net["r2"].cmd("ip addr add 10.0.2.1/24 dev r2-eth1")
 
     net["h1"].cmd("ip route add default via 10.0.0.3")
     net["h2"].cmd("ip route add default via 10.0.3.4")
@@ -31,9 +27,18 @@ def main(**kwargs):
     net["r2"].cmd("ip route add to 10.0.0.0/24 via 10.0.1.1 dev r2-eth0")
     net["r2"].cmd("ip route add to 10.0.3.0/24 via 10.0.1.1 dev r2-eth0")
 
+    ##  Begin `exp1` Logging
+    output:str = ""
+    output += net["h1"].cmd("ping -c 1 10.0.2.2") + "\n"
+    output += net["h2"].cmd("ping -c 1 10.0.2.2") + "\n"
+    output += net["h3"].cmd("ping -c 1 10.0.0.1") + "\n"
+    output += net["h3"].cmd("ping -c 1 10.0.3.2") + "\n"
+    print(output)
+
     CLI(net)
     input("Network running. Press Enter to stop...")
     net.stop()
+
 
 if __name__ == "__main__":
     main()
