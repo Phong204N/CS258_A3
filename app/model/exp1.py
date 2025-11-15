@@ -34,10 +34,6 @@ class exp1Topo(Topo):
             ip="10.0.2.2/24", 
             # defaultRoute="via 10.0.2.1"
         )
-        
-        # h1 = self.addHost("h1")
-        # h2 = self.addHost("h2")
-        # h3 = self.addHost("h3")
 
         r1 = self.addHost("r1", ip=None, cls=LinuxRouter)
         r2 = self.addHost("r2", ip=None, cls=LinuxRouter)
