@@ -22,17 +22,17 @@ class exp1Topo(Topo):
         h1 = self.addHost(
             "h1", 
             # ip="10.0.0.1/24", 
-            defaultRoute="via 10.0.0.3"
+            # defaultRoute="via 10.0.0.3"
         )
         h2 = self.addHost(
             "h2", 
             # ip="10.0.3.2/24", 
-            defaultRoute="via 10.0.3.4"
+            # defaultRoute="via 10.0.3.4"
         )
         h3 = self.addHost(
             "h3", 
             # ip="10.0.2.2/24", 
-            defaultRoute="via 10.0.2.1"
+            # defaultRoute="via 10.0.2.1"
         )
         
         # h1 = self.addHost("h1")
