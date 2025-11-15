@@ -15,15 +15,17 @@ def main(**kwargs):
     net = Mininet(topo=tmp1, switch=OVSKernelSwitch, controller=DefaultController, autoSetMacs=True)
     # net = Mininet(topo=tmp1)
     net.start()
-    # net["h1"].cmd('/usr/sbin/sshd')
-    # net["h2"].cmd('/usr/sbin/sshd')
-    # net["h3"].cmd('/usr/sbin/sshd')
+    
+    net["r1"].cmd("ip addr add 10.0.0.3/24 dev r1-eth0")
+    net["r1"].cmd("ip addr add 10.0.3.4/24 dev r1-eth1")
+    net["r1"].cmd("ip addr add 10.0.1.1/24 dev r1-eth2")
+    
+    net["r2"].cmd("ip addr add 10.0.1.2/24 dev r2-eth0")
+    net["r2"].cmd("ip addr add 10.0.2.1/24 dev r2-eth1")
 
-    # net["h1"].cmd("ip route add default via 10.0.0.3")
-    # net["h2"].cmd("ip route add default via 10.0.3.4")
-    # net["h3"].cmd("ip route add default via 10.0.2.1")
-
-    # net["r1"].cmd("ip route add to 10.0.1.0/24 via 10.0.1.2")
+    net["h1"].cmd("ip route add default via 10.0.0.3")
+    net["h2"].cmd("ip route add default via 10.0.3.4")
+    net["h3"].cmd("ip route add default via 10.0.2.1")
 
     net["r1"].cmd("ip route add to 10.0.2.0/24 via 10.0.1.2 dev r1-eth2")
     net["r2"].cmd("ip route add to 10.0.0.0/24 via 10.0.1.1 dev r2-eth0")
