@@ -27,36 +27,30 @@ class exp1Topo(Topo):
         # h2 = self.addHost("h2")
         # h3 = self.addHost("h3")
 
-        r1 = self.addHost("r1", cls=LinuxRouter)
-        r2 = self.addHost("r2", cls=LinuxRouter)
-
-        r1.setIP("10.0.0.3/24", intf=f"{r1_ports[0]}0")
-        r1.setIP("10.0.3.4/24", intf=f"{r1_ports[0]}1")
-        r1.setIP("10.0.1.1/24", intf=f"{r1_ports[0]}2")
-        r2.setIP("10.0.1.2/24", intf=f"{r2_ports[0]}0")
-        r2.setIP("10.0.2.1/24", intf=f"{r2_ports[0]}1")
+        r1 = self.addHost("r1", ip="", cls=LinuxRouter)
+        r2 = self.addHost("r2", ip="", cls=LinuxRouter)
 
         self.addLink(h1, r1, 
-                    #  intfName1=exp1Topo.addNewInterfaceName(h1_ports), 
-                    #  intfName2=exp1Topo.addNewInterfaceName(r1_ports),
+                     intfName1=exp1Topo.addNewInterfaceName(h1_ports), 
+                     intfName2=exp1Topo.addNewInterfaceName(r1_ports),
                      params1={"ip":"10.0.0.1/24"},
                      params2={"ip":"10.0.0.3/24"}
                      )
         self.addLink(h2, r1, 
-                    #  intfName1=exp1Topo.addNewInterfaceName(h2_ports), 
-                    #  intfName2=exp1Topo.addNewInterfaceName(r1_ports),
+                     intfName1=exp1Topo.addNewInterfaceName(h2_ports), 
+                     intfName2=exp1Topo.addNewInterfaceName(r1_ports),
                      params1={"ip":"10.0.3.2/24"},
                      params2={"ip":"10.0.3.4/24"}
                      )
         self.addLink(r1, r2, 
-                    #  intfName1=exp1Topo.addNewInterfaceName(r1_ports), 
-                    #  intfName2=exp1Topo.addNewInterfaceName(r2_ports),
+                     intfName1=exp1Topo.addNewInterfaceName(r1_ports), 
+                     intfName2=exp1Topo.addNewInterfaceName(r2_ports),
                      params1={"ip":"10.0.1.1/24"},
                      params2={"ip":"10.0.1.2/24"}
                      )
         self.addLink(r2, h3, 
-                    #  intfName1=exp1Topo.addNewInterfaceName(r2_ports), 
-                    #  intfName2=exp1Topo.addNewInterfaceName(h3_ports),
+                     intfName1=exp1Topo.addNewInterfaceName(r2_ports), 
+                     intfName2=exp1Topo.addNewInterfaceName(h3_ports),
                      params1={"ip":"10.0.2.1/24"},
                      params2={"ip":"10.0.2.2/24"}
                      ) 
