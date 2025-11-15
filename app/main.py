@@ -1,4 +1,5 @@
 ##  Begin Standard Imports
+import sys
 from pathlib import Path
 
 ##  Begin Local Imports
@@ -13,8 +14,16 @@ from mininet.cli import CLI
 from mininet.log import setLogLevel
 
 def main(**kwargs):
-    # exp1Run(kwargs=kwargs)
-    exp2Run(kwargs=kwargs)
+    expNum:int = 0
+    try:
+        expNum = int(sys.argv[1])
+    except Exception as e:
+        raise(e)
+    
+    if expNum == 1:
+        exp1Run(kwargs=kwargs)
+    elif expNum == 2:
+        exp2Run(kwargs=kwargs)
 
 def exp1Run(**kwargs) -> Path:
     tmp1:exp1Topo = exp1Topo()
