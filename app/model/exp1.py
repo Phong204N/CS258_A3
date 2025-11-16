@@ -13,12 +13,14 @@ class exp1Topo(Topo):
         # for key in kwargs:
         #     if key == "N": N=kwargs[key]
 
+        ##  Keep a list for each end device, containing the prefix string of its ports and the index/id number to be incremented.
         h1_ports:list[str, int] = ["h1-eth", -1]
         h2_ports:list[str, int] = ["h2-eth", -1]
         h3_ports:list[str, int] = ["h3-eth", -1]
         r1_ports:list[str, int] = ["r1-eth", -1]
         r2_ports:list[str, int] = ["r2-eth", -1]
 
+        ##  Add the hosts themselves with the preset IP.  As can be seen, the `defaultRoute` on add was deprecated.
         h1 = self.addHost(
             "h1", 
             ip="10.0.0.1/24", 
@@ -35,9 +37,11 @@ class exp1Topo(Topo):
             # defaultRoute="via 10.0.2.1"
         )
 
+        ##  Add the routers themselves with the `LinuxRouter` class.  Ensure that no default IP is set by Mininet.
         r1 = self.addHost("r1", ip=None, cls=LinuxRouter)
         r2 = self.addHost("r2", ip=None, cls=LinuxRouter)
 
+        ##  Add each link between devices.  Specify the interface name as well as the IP to link.
         self.addLink(h1, r1, 
                      intfName1=exp1Topo.addNewInterfaceName(h1_ports), 
                      intfName2=exp1Topo.addNewInterfaceName(r1_ports),
@@ -63,6 +67,7 @@ class exp1Topo(Topo):
                      params2={"ip":"10.0.2.2/24"}
                      ) 
 
+    ##  A basic method that takes the interface list of a device, increments the interface suffix number, and then returns a combined `str`.
     def addNewInterfaceName(intfValues:list[str, int]) -> str:
         intfValues[1] += 1
         result:str = f"{intfValues[0]}{intfValues[1]}"

@@ -3,14 +3,13 @@
 ##  Begin Local Imports
 
 ##  Begin `mininet` Imports
-from mininet.node import Node
 from mininet.topo import Topo
-from mininet.log import info
 
 class exp2Topo(Topo):
     def __init__(self, **kwargs) -> None:
         super(exp2Topo, self).__init__(**kwargs)
 
+        ##  Add the hosts themselves with the preset IP.  
         h1 = self.addHost(
             "h1", 
         )
@@ -21,6 +20,7 @@ class exp2Topo(Topo):
             "h3", 
         )
 
+        ##  Add the switches themselves.  
         s1 = self.addSwitch(
             "s1"
         )
@@ -29,6 +29,7 @@ class exp2Topo(Topo):
             "s2"
         )
 
+        ##  Add each link between devices.  Specify the interface name. 
         self.addLink(
             h1, s1,
             intfName1="h1-eth0",
