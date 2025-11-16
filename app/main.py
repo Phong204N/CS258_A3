@@ -57,9 +57,9 @@ def exp1Run(**kwargs) -> Path:
     outputPath:Path = Path.joinpath(resources.CONST_OUTPUT_DIR, "result1.txt")
     output:str = ""
     output += f"--[[H1 -> H3]]--\n{net['h1'].cmd('ping -c 1 10.0.2.2')}\n"
-    output += f"--[[H1 -> H3]]--\n{net['h2'].cmd('ping -c 1 10.0.2.2')}\n"
-    output += f"--[[H1 -> H3]]--\n{net['h3'].cmd('ping -c 1 10.0.0.1')}\n"
-    output += f"--[[H1 -> H3]]--\n{net['h3'].cmd('ping -c 1 10.0.3.2')}\n"
+    output += f"--[[H2 -> H3]]--\n{net['h2'].cmd('ping -c 1 10.0.2.2')}\n"
+    output += f"--[[H3 -> H1]]--\n{net['h3'].cmd('ping -c 1 10.0.0.1')}\n"
+    output += f"--[[H3 -> H2]]--\n{net['h3'].cmd('ping -c 1 10.0.3.2')}\n"
     output += f"--[[PINGALL]]--\nPacket Loss: {net.pingAll()}%\n"
     with open(outputPath, "w") as f:
         f.write(output)
