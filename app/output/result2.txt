@@ -1,0 +1,23 @@
+--[[Commands used for `ovs-ofctl`]]--
+rascal@UbuntuPlaypen:~/Desktop/CS258/A3/CS258_A3$ sudo ovs-ofctl dump-flows s1 
+rascal@UbuntuPlaypen:~/Desktop/CS258/A3/CS258_A3$ sudo ovs-ofctl show s1
+rascal@UbuntuPlaypen:~/Desktop/CS258/A3/CS258_A3$ sudo ovs-ofctl add-flow s1 in_port=2,actions=drop
+rascal@UbuntuPlaypen:~/Desktop/CS258/A3/CS258_A3$ sudo ovs-ofctl add-flow s1 in_port=1,actions=output:3
+
+--[[Mininet Ping Outputs]]--
+--[[H1 -> H3]]--
+mininet> h1 ping -c 1 h3
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=11.3 ms
+
+--- 10.0.0.3 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 11.340/11.340/11.340/0.000 ms
+
+--[[H2 -> H3]]--
+mininet> h2 ping -c 1 h3
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+From 10.0.0.2 icmp_seq=1 Destination Host Unreachable
+
+--- 10.0.0.3 ping statistics ---
+1 packets transmitted, 0 received, +1 errors, 100% packet loss, time 0ms
